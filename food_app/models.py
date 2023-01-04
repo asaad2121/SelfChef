@@ -4,7 +4,7 @@ from django.db import models
 class Recipes(models.Model):
     rname = models.CharField(max_length=30, unique=True)
     rdescription = models.TextField(max_length=100)
-    ringredients = models.TextField()
+    ringredients = models.JSONField(default=list())
     rthumbnail = models.ImageField(upload_to='Image', default = None)
     rstep1 = models.TextField()
     rstep2 = models.TextField()
@@ -14,11 +14,3 @@ class Recipes(models.Model):
 
     def __str__(self):
         return self.rname
-
-class UserData(models.Model):
-    user_name = models.CharField(max_length=30, unique=True)
-    user_email = models.EmailField(max_length=30, unique=True)
-    user_password = models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.user_name

@@ -1,25 +1,5 @@
 from django import forms
-from food_app.models import Recipes, UserData
-
-class UserForm(forms.ModelForm):
-    user_password = forms.CharField(widget=forms.PasswordInput)
-    class Meta:
-        model = UserData
-        fields = '__all__'
-        widgets={
-            'user_name' : forms.TextInput(attrs={
-                'placeholder': 'User Name',
-                'class': 'form-control'
-                }),
-            'user_email' : forms.EmailInput(attrs={
-                'placeholder': 'User Email',
-                'class': 'form-control'
-                }),
-            'user_password' : forms.PasswordInput(attrs={
-                'placeholder': 'User Email',
-                'class': 'form-control'
-                }),
-        }
+from food_app.models import Recipes
 
 class RecipesForm(forms.ModelForm):
     class Meta:
