@@ -83,7 +83,7 @@ class Login(View):
                 elif user.is_active:
                     auth.login(request,user)
                     messages.success(request,"Welcome, "+ user.username + ". You are now logged in.")
-                    return redirect('dashboard')
+                    return redirect('/')
             else:
                 messages.error(request,'Invalid credentials')
                 return render(request,'auth_app/login.html',context=context)
