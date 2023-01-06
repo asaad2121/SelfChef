@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Recipes(models.Model):
@@ -11,6 +12,7 @@ class Recipes(models.Model):
     rstep3 = models.TextField()
     rstep4 = models.TextField()
     rstep5 = models.TextField()
+    rauthor = models.ForeignKey(to = User,on_delete=models.CASCADE,default = None)
 
     def __str__(self):
         return self.rname

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_main %}Recepies{% endblock %}
+{% block body_main %}
+<hr class="tm-mt-60">
+{% include "partials/_navbar_self.html" %}
+<hr class="tm-mt-60">
+<div class="tm-bg-gray">
+<div class="container"><br>
+    {% include "partials/_messages.html" %}
+    <a href="{% url 'add_recepie' %}" class="btn btn-success btn-sm" style="display: block; margin-right: auto ; margin-left: auto;" >Add a new Recepie of your own, Click Here!!!</a></td>
+    <br>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    {% for rep in recepi %}
+    <tbody>
+      <tr>
+        <th scope="row">{{rep.id}}</th>
+        <td>{{rep.rname}}</td>
+        <td><a href="{% url 'edit_recepie' rep.id %}" class="btn btn-warning btn-sm">Edit</a></td>
+        <td><a href="{% url 'delete_recepie' rep.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+      </tr>
+      {% endfor %}
+      
+      </tr>
+    </tbody>
+  </table>
+</div></div>
+{% endblock %}
