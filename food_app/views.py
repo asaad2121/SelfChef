@@ -45,15 +45,15 @@ def add_recepie(request):
         return render(request,'food_app/add_recepie.html',context)
     
     if request.method == 'POST':
-        rname= request.POST.get('name','')
-        rdescription = request.POST.get('description','')
-        ringredients = request.POST.get('ingredients','')
-        rthumbnail = request.POST.get('thumbnail','')
-        rstep1 = request.POST.get('step1','')
-        rstep2 = request.POST.get('step2','')
-        rstep3 = request.POST.get('step3','')
-        rstep4 = request.POST.get('step4','')
-        rstep5 = request.POST.get('step5','')
+        rname= request.POST.get('rname','')
+        rdescription = request.POST.get('rdescription','')
+        ringredients = request.POST.get('ringredients','')
+        rthumbnail = request.FILES.get('rthumbnail','')
+        rstep1 = request.POST.get('rstep1','')
+        rstep2 = request.POST.get('rstep2','')
+        rstep3 = request.POST.get('rstep3','')
+        rstep4 = request.POST.get('rstep4','')
+        rstep5 = request.POST.get('rstep5','')
         
         
         if rname == '':
@@ -72,15 +72,27 @@ def add_recepie(request):
             messages.error(request,' Image Missing')
             return render(request,'food_app/add_recepie.html',context)
 
-        if rstep1 == '' or rstep2 == '' or rstep3 == '' or rstep4 == '' or rstep5 == '':
-            messages.error(request,'Steps missing')
+        if rstep1 == '':
+            messages.error(request,'Step 1 missing')
+            return render(request,'food_app/add_recepie.html',context)
+        if rstep2 == '':
+            messages.error(request,'Step 2 missing')
+            return render(request,'food_app/add_recepie.html',context)
+        if rstep3 == '':
+            messages.error(request,'Step 3 missing')
+            return render(request,'food_app/add_recepie.html',context)
+        if rstep4 == '':
+            messages.error(request,'Step 4 missing')
+            return render(request,'food_app/add_recepie.html',context)
+        if rstep5 == '':
+            messages.error(request,'Step 5 missing')
             return render(request,'food_app/add_recepie.html',context)
 
         Recipes.objects.create(
             rauthor=request.user,
             rname=rname,
             rdescription=rdescription,
-            ringredients=ringredients,
+            ringredients=ringredients.split(","),
             rthumbnail=rthumbnail,
             rstep1=rstep1,
             rstep2=rstep2,
@@ -112,44 +124,58 @@ def edit_recepie(request,id):
     }
 
     if request.method == 'GET':
-        return render(request,'food_app/add_recepie.html',context)
+        return render(request,'food_app/edit_recepie.html',context)
 
     if request.method == 'POST':
-        rname= request.POST.get('name','')
-        rdescription = request.POST.get('description','')
-        ringredients = request.POST.get('ingredients','')
-        rthumbnail = request.POST.get('thumbnail','')
-        rstep1 = request.POST.get('step1','')
-        rstep2 = request.POST.get('step2','')
-        rstep3 = request.POST.get('step3','')
-        rstep4 = request.POST.get('step4','')
-        rstep5 = request.POST.get('step5','')
+
+        rname= request.POST.get('rname','')
+        rdescription = request.POST.get('rdescription','')
+        ringredients = request.POST.get('ringredients','')
+        rthumbnail = request.FILES.get('rthumbnail','')
+        rstep1 = request.POST.get('rstep1','')
+        rstep2 = request.POST.get('rstep2','')
+        rstep3 = request.POST.get('rstep3','')
+        rstep4 = request.POST.get('rstep4','')
+        rstep5 = request.POST.get('rstep5','')
         
         if rname == '':
             messages.error(request,'Name cannot be empty')
-            return render(request,'food_app/edit_recepie.html',context)
+            return render(request,'food_app/add_recepie.html',context)
         
         if rdescription == '':
             messages.error(request,'Description cannot be empty')
-            return render(request,'food_app/edit_recepie.html',context)
+            return render(request,'food_app/add_recepie.html',context)
         
         if ringredients == '':
             messages.error(request,' Ingrediants cannot be empty')
-            return render(request,'food_app/edit_recepie.html',context)
+            return render(request,'food_app/add_recepie.html',context)
         
         if rthumbnail == '':
             messages.error(request,' Image Missing')
-            return render(request,'food_app/edit_recepie.html',context)
+            return render(request,'food_app/add_recepie.html',context)
 
-        if rstep1 == '' or rstep2 == '' or rstep3 == '' or rstep4 == '' or rstep5 == '':
-            messages.error(request,'Steps missing')
-            return render(request,'food_app/edit_recepie.html',context)
+        if rstep1 == '':
+            messages.error(request,'Step 1 missing')
+            return render(request,'food_app/add_recepie.html',context)
+        if rstep2 == '':
+            messages.error(request,'Step 2 missing')
+            return render(request,'food_app/add_recepie.html',context)
+        if rstep3 == '':
+            messages.error(request,'Step 3 missing')
+            return render(request,'food_app/add_recepie.html',context)
+        if rstep4 == '':
+            messages.error(request,'Step 4 missing')
+            return render(request,'food_app/add_recepie.html',context)
+        if rstep5 == '':
+            messages.error(request,'Step 5 missing')
+            return render(request,'food_app/add_recepie.html',context)
+
 
         
-        rname=rname
+        recepi.rname=rname
         recepi.rdescription=rdescription
         recepi.rthumbnail=rthumbnail
-        recepi.ringredients=ringredients
+        recepi.ringredients=ringredients.split(","),
         recepi.rstep1=rstep1
         recepi.rstep2=rstep2
         recepi.rstep3=rstep3

@@ -2,8 +2,63 @@
 {% load static %}
 {% block title_main %}Edit{% endblock %}
 {% block body_main %}
-
-
+<hr class="tm-mt-60">
+{% include "partials/_navbar_crud.html" %}
+<hr class="tm-mt-60"><br>
+<div class="container mt--8 pb-5">
+<div class="row justify-content-center">
+<div class="col-lg-6 col-md-8">
+<div class="card bg-secondary border-0">
+<div class="card-body px-lg-5 py-lg-5">
 {% include "partials/_messages.html" %}
-<p>hello </p>
+<div class="text-center text-muted mb-4"><small>Edit Recepie</small></div>
+    <form action="{% url 'edit_recepie' recepi.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="input-group input-group-merge input-group-alternative mb-3">
+            <input class="form-control" name="rname" value="{{recepi.rname}}"  placeholder="Recepie Name" type="text" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group input-group-merge input-group-alternative mb-3">
+            <input class="form-control" name="rdescription" value="{{recepi.rdescription}}" placeholder="Description" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group input-group-merge input-group-alternative mb-3">
+            <input class="form-control" name="ringredients" value="{{recepi.ringredients}}" placeholder="Ingredients" type="text"></div>
+        </div>
+        <div class="input-group mb-3">
+            <input type="file" class="form-control" accept="image/png, image/jpeg" id="inputGroupFile02" name="rthumbnail" value="{{recepi.rthumbnail}}">
+        </div>
+        <div class="form-group">
+            <div class="input-group input-group-merge input-group-alternative mb-3">
+            <input class="form-control" name="rstep1" value="{{recepi.rstep1}}" placeholder="Step 1" type="text"></div>
+        </div>
+        <div class="form-group">
+            <div class="input-group input-group-merge input-group-alternative mb-3">
+            <input class="form-control" name="rstep2" value="{{recepi.rstep2}}" placeholder="Step 2" type="text"></div>
+        </div>
+        <div class="form-group">
+            <div class="input-group input-group-merge input-group-alternative mb-3">
+            <input class="form-control" name="rstep3" value="{{recepi.rstep3}}" placeholder="Step 3" type="text"></div>
+        </div>
+        <div class="form-group">
+            <div class="input-group input-group-merge input-group-alternative mb-3">
+            <input class="form-control" name="rstep4" value="{{recepi.rstep4}}" placeholder="Step 4" type="text"></div>
+        </div>
+        <div class="form-group">
+            <div class="input-group input-group-merge input-group-alternative mb-3">
+            <input class="form-control" name="rstep5" value="{{recepi.rstep5}}" placeholder="Step 5" type="text"></div>
+        </div>
+        
+        <div class="text-center"><button type="submit" class="btn btn-primary my-4">Save</button>
+    </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 {% endblock %}

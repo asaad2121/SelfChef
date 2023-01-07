@@ -4,8 +4,9 @@
 {% block body_main %}
 <hr class="tm-mt-60">
 {% include "partials/_navbar_main.html" %}
-{% if dataDet %}
 <hr class="tm-mt-60">
+{% include "partials/_messages.html" %}
+{% if dataDet %}
 <div class="container-fluid tm-container-content tm-mt-60 tm-bg-gray">
     <div class="row mb-4">
     <h2 class="col-6 tm-text-primary">Recepies</h2>
