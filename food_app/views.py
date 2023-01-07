@@ -117,7 +117,8 @@ def edit_recepie(request,id):
     if  recepi.rauthor != request.user:
         messages.error(request,'Something Went Wrong')
         return redirect('recepie_page')
-
+    recepi.ringredients=", ".join(recepi.ringredients)
+    print(recepi.ringredients)
     context = {
         'recepi':recepi,
         'values': recepi,
@@ -175,7 +176,7 @@ def edit_recepie(request,id):
         recepi.rname=rname
         recepi.rdescription=rdescription
         recepi.rthumbnail=rthumbnail
-        recepi.ringredients=ringredients.split(","),
+        recepi.ringredients=ringredients.split(",")
         recepi.rstep1=rstep1
         recepi.rstep2=rstep2
         recepi.rstep3=rstep3
